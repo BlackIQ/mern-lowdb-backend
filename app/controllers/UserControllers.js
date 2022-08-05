@@ -47,7 +47,7 @@ const addUser = (req, res) => {
     res.send(newUser);
 }
 
-const delUser = (req, res) => {
+const deleteUser = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
     const uid = parseInt(req.body.uid);
@@ -60,9 +60,24 @@ const delUser = (req, res) => {
     });
 }
 
+const updateUser = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    const uid = parseInt(req.body.uid);
+    const data = req.body.data;
+
+    db.get("users").find({id: uid}).assign(data).write();
+
+    res.status(200);
+    res.send({
+        message: "User updated",
+    });
+}
+
 module.exports = {
     searchUsers,
     getUser,
     addUser,
-    delUser,
+    deleteUser,
+    updateUser
 }
