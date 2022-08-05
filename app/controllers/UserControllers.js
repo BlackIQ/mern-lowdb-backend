@@ -47,7 +47,7 @@ const addUser = (req, res) => {
 
     const newUser = {
         ...data,
-        id: `${lastUserId + 1}`,
+        id: lastUserId + 1,
     };
 
     db.get("users").push(newUser).write();
