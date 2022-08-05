@@ -5,15 +5,6 @@ const FileSync = require("lowdb/adapters/FileSync");
 const file = join(__dirname, 'db.json');
 const db = lowDb(new FileSync(file));
 
-const info = (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-
-    res.status(200);
-    res.send({
-        "file_pwd": file,
-    });
-}
-
 const searchUsers = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
@@ -56,9 +47,22 @@ const addUser = (req, res) => {
     res.send(newUser);
 }
 
+const delUser = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    const uid = parseInt(req.body.uid);
+
+    db.get("users").remove({id: uid}).write();
+
+    res.status(200);
+    res.send({
+        message: "User delete",
+    });
+}
+
 module.exports = {
-    info,
     searchUsers,
     getUser,
     addUser,
+    delUser,
 }
