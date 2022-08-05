@@ -3,7 +3,8 @@ const controllers = require("../controllers/UserControllers");
 
 const router = express.Router();
 
-router.get('/get/:search', controllers.getUsers);
+router.get('/search/:search', controllers.searchUsers);
+router.get('/get/:uid', controllers.getUser);
 router.post('/add', controllers.addUser);
 
 module.exports = router;
