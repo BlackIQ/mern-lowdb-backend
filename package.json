@@ -1,7 +1,7 @@
 {
   "name": "mern_lowdb",
   "version": "1.0.0",
-  "description": "Creating a MERN application with Json file as our database using LowDB",
+  "description": "Creating a MERN application with Json file as our database using LowDB.",
   "main": "app.js",
   "scripts": {
     "test": "nodemon app.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BlackIQ/mern-lowdb.git"
+    "url": "git+https://github.com/BlackIQ/mern-lowdb-backend.git"
   },
   "keywords": [
     "LowDB",
@@ -20,9 +20,9 @@
   "author": "Amirhossein Mohammadi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BlackIQ/mern-lowdb/issues"
+    "url": "https://github.com/BlackIQ/mern-lowdb-backend/issues"
   },
-  "homepage": "https://github.com/BlackIQ/mern-lowdb#readme",
+  "homepage": "https://github.com/BlackIQ/mern-lowdb-backend#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
