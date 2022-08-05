@@ -11,7 +11,8 @@ const getUsers = (req, res) => {
 
     const searchData = req.params.search;
 
-    const data = db.get("users").value();
+    const users = db.get("users").value();
+    const data = users.filter(user => user.name === searchData || user.surname === searchData || user.age === searchData || user.addr === searchData);
 
     res.status(200);
     res.send(data);
