@@ -1,12 +1,11 @@
 const { join } = require("path");
 const lowDb = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
-// const { nanoid } = require("nanoid");
 
 const file = join(__dirname, 'db.json');
 const db = lowDb(new FileSync(file));
 
-const getUsers = (req, res) => {
+const searchUsers = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
     const searchData = req.params.search;
@@ -18,6 +17,18 @@ const getUsers = (req, res) => {
     res.send(data);
 }
 
+const getUser = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
+    const uid = parseInt(req.params.uid);
+
+    const users = db.get("users").value();
+    const data = users.filter(user => user.id === uid);
+
+    res.status(200);
+    res.send(data[0]);
+}
+
 const addUser = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
 
@@ -27,7 +38,7 @@ const addUser = (req, res) => {
 
     const newUser = {
         ...data,
-        id: lastUserId + 1,
+        id: `${lastUserId + 1}`,
     };
 
     db.get("users").push(newUser).write();
@@ -37,6 +48,7 @@ const addUser = (req, res) => {
 }
 
 module.exports = {
-    getUsers,
+    searchUsers,
+    getUser,
     addUser,
 }
